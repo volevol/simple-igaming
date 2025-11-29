@@ -11,3 +11,11 @@ export enum SymbolID {
 }
 
 export type ReelStrip = SymbolID[];
+
+// window[reelIndex][rowIndex]
+export type SpinWindow = SymbolID[][];
+
+export interface SpinStopResult {
+  stops: number[];
+  window: SpinWindow;
+}
