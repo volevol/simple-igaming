@@ -1,5 +1,6 @@
 import { SlotMachine } from "./slot/SlotMachine";
 import { ReelStrip, SpinWindow, SymbolID } from "./slot/types";
+import { calculateWin } from "./slot/win";
 
 const demoStrip: ReelStrip = [
   SymbolID.A,
@@ -43,6 +44,7 @@ function main() {
 
   console.log("Stops per reel:", result.stops);
   printWindow(result.window);
+  console.log(calculateWin(result.window));
 }
 
 main();
