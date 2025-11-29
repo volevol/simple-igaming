@@ -1,0 +1,13 @@
+export enum SymbolID {
+  A = "A",
+  K = "K",
+  Q = "Q",
+  J = "J",
+  Ten = "10",
+  Nine = "9",
+  Eight = "8",
+  Seven = "7",
+  Six = "6",
+}
+
+export type ReelStrip = SymbolID[];
