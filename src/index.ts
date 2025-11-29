@@ -1,28 +1,9 @@
+import { demoReelStrips } from "./demoData";
 import { SlotMachine } from "./slot/SlotMachine";
-import { ReelStrip, SpinWindow, SymbolID } from "./slot/types";
+import { SpinWindow } from "./slot/types";
 import { calculateWin } from "./slot/win";
 
-const demoStrip: ReelStrip = [
-  SymbolID.A,
-  SymbolID.K,
-  SymbolID.Q,
-  SymbolID.J,
-  SymbolID.Ten,
-  SymbolID.Nine,
-  SymbolID.Eight,
-  SymbolID.Seven,
-  SymbolID.Six,
-];
-
-const reelStrips: ReelStrip[] = [
-  demoStrip,
-  demoStrip,
-  demoStrip,
-  demoStrip,
-  demoStrip,
-];
-
-const slot = new SlotMachine(reelStrips);
+const slot = new SlotMachine(demoReelStrips);
 
 function printWindow(window: SpinWindow): void {
   const rows = 3;

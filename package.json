@@ -4,7 +4,8 @@
   "description": "Simple 5x3 slot simulator",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/index.ts"
+    "start": "ts-node src/index.ts",
+    "simulate": "ts-node src/simulateRtp.ts"
   },
   "keywords": [],
   "author": "",
