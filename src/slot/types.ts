@@ -1,4 +1,5 @@
 export enum SymbolID {
+  Wild = "W",
   A = "A",
   K = "K",
   Q = "Q",

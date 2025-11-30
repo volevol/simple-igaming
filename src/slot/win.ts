@@ -4,6 +4,7 @@ import { SpinWindow, SymbolID } from "./types";
 
 export function calculateWin(window: SpinWindow): number {
   let totalWin = 0;
+  const WILD = SymbolID.Wild;
 
   for (const line of paylines) {
     const symbols: SymbolID[] = [];
@@ -13,17 +14,26 @@ export function calculateWin(window: SpinWindow): number {
       symbols.push(window[column][row]);
     }
 
-    const firstSymbol = symbols[0];
-    let matchResult = 1;
+    let baseSymbol: SymbolID | null = null;
+    for (const symbol of symbols) {
+      if (symbol !== WILD) {
+        baseSymbol = symbol;
+        break;
+      }
+    }
+    if (baseSymbol === null) {
+      baseSymbol = WILD;
+    }
 
+    let matchCount = 1;
     for (let i = 1; i < symbols.length; i++) {
-      if (symbols[i] === firstSymbol) matchResult++;
+      if (symbols[i] === baseSymbol || symbols[i] === WILD) matchCount++;
       else break;
     }
 
-    if (matchResult >= 3) {
-      const symbolPaytable = paytable[firstSymbol];
-      const symbolPaytableWin = symbolPaytable[matchResult as 3 | 4 | 5];
+    if (matchCount >= 3) {
+      const symbolPaytable = paytable[baseSymbol];
+      const symbolPaytableWin = symbolPaytable[matchCount as 3 | 4 | 5];
       totalWin += symbolPaytableWin;
     }
   }

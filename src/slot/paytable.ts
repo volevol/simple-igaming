@@ -1,6 +1,9 @@
 import { SymbolID } from "./types";
 
 export const paytable: Record<SymbolID, { 3: number; 4: number; 5: number }> = {
+  // TOP TIER
+  [SymbolID.Wild]: { 3: 20, 4: 100, 5: 500 },
+
   // HIGH TIER
   [SymbolID.A]: { 3: 10, 4: 40, 5: 200 },
   [SymbolID.K]: { 3: 8, 4: 30, 5: 160 },
