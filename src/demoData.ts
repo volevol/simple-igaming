@@ -8,6 +8,7 @@ export const demoStrip: ReelStrip = [
   SymbolID.Ten,
   SymbolID.Nine,
   SymbolID.Eight,
+  SymbolID.Scatter, // SCATTER
   SymbolID.Seven,
   SymbolID.Six,
 
@@ -17,6 +18,7 @@ export const demoStrip: ReelStrip = [
   SymbolID.Wild, // WILD
   SymbolID.J,
   SymbolID.Ten,
+  SymbolID.Scatter, // SCATTER
   SymbolID.Nine,
   SymbolID.Wild, // WILD
   SymbolID.Eight,
@@ -31,6 +33,7 @@ export const demoStrip: ReelStrip = [
   SymbolID.Nine,
   SymbolID.Eight,
   SymbolID.Seven,
+  SymbolID.Scatter, // SCATTER
   SymbolID.Six,
   SymbolID.Wild, // WILD
 
@@ -39,7 +42,34 @@ export const demoStrip: ReelStrip = [
   SymbolID.Q,
   SymbolID.J,
   SymbolID.Ten,
+  SymbolID.Scatter, // SCATTER
   SymbolID.Nine,
+  SymbolID.Eight,
+  SymbolID.Seven,
+  SymbolID.Six,
+
+  SymbolID.A,
+  SymbolID.K,
+  SymbolID.Q,
+  SymbolID.Scatter, // SCATTER
+  SymbolID.J,
+  SymbolID.Ten,
+  SymbolID.Scatter, // SCATTER
+  SymbolID.Nine,
+  SymbolID.Eight,
+  SymbolID.Seven,
+  SymbolID.Six,
+
+  SymbolID.Wild, // WILD
+  SymbolID.Wild, // WILD
+  SymbolID.A,
+  SymbolID.Wild, // WILD
+  SymbolID.K,
+  SymbolID.Q,
+  SymbolID.J,
+  SymbolID.Ten,
+  SymbolID.Nine,
+  SymbolID.Scatter, // SCATTER
   SymbolID.Eight,
   SymbolID.Seven,
   SymbolID.Six,
@@ -49,36 +79,15 @@ export const demoStrip: ReelStrip = [
   SymbolID.Q,
   SymbolID.J,
   SymbolID.Ten,
-  SymbolID.Nine,
-  SymbolID.Eight,
-  SymbolID.Seven,
-  SymbolID.Six,
-
-  SymbolID.Wild, // WILD
-  SymbolID.Wild, // WILD
-  SymbolID.A,
-  SymbolID.Wild, // WILD
-  SymbolID.K,
-  SymbolID.Q,
-  SymbolID.J,
-  SymbolID.Ten,
-  SymbolID.Nine,
-  SymbolID.Eight,
-  SymbolID.Seven,
-  SymbolID.Six,
-
-  SymbolID.A,
-  SymbolID.K,
-  SymbolID.Q,
-  SymbolID.J,
-  SymbolID.Ten,
   SymbolID.Wild, // WILD
   SymbolID.Nine,
   SymbolID.Eight,
   SymbolID.Seven,
+  SymbolID.Scatter, // SCATTER
   SymbolID.Six,
 
   SymbolID.A,
+  SymbolID.Scatter, // SCATTER
   SymbolID.K,
   SymbolID.Q,
   SymbolID.J,
@@ -96,6 +105,7 @@ export const demoStrip: ReelStrip = [
   SymbolID.Wild, // WILD
   SymbolID.J,
   SymbolID.Ten,
+  SymbolID.Scatter, // SCATTER
   SymbolID.Nine,
   SymbolID.Eight,
   SymbolID.Seven,
@@ -106,8 +116,10 @@ export const demoStrip: ReelStrip = [
   SymbolID.K,
   SymbolID.Q,
   SymbolID.J,
+  SymbolID.Scatter, // SCATTER
   SymbolID.Ten,
   SymbolID.Nine,
+  SymbolID.Scatter, // SCATTER
   SymbolID.Eight,
   SymbolID.Seven,
   SymbolID.Six,

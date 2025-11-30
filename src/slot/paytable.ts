@@ -1,6 +1,11 @@
 import { SymbolID } from "./types";
 
-export const paytable: Record<SymbolID, { 3: number; 4: number; 5: number }> = {
+export type PaytableSymbols = Exclude<SymbolID, SymbolID.Scatter>;
+
+export const paytable: Record<
+  PaytableSymbols,
+  { 3: number; 4: number; 5: number }
+> = {
   // TOP TIER
   [SymbolID.Wild]: { 3: 20, 4: 100, 5: 500 },
 

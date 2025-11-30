@@ -1,5 +1,6 @@
 export enum SymbolID {
   Wild = "W",
+  Scatter = "S",
   A = "A",
   K = "K",
   Q = "Q",
