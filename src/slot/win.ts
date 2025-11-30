@@ -7,6 +7,7 @@ export function calculateWin(window: SpinWindow): number {
   let totalWin = 0;
   const WILD = SymbolID.Wild;
   const SCATTER = SymbolID.Scatter;
+  const DEBUG = true; // toggle for debug
 
   // --- LINES WIN ---
   for (const line of paylines) {
@@ -45,6 +46,11 @@ export function calculateWin(window: SpinWindow): number {
       const symbolPaytable = paytable[baseSymbol];
       const symbolPaytableWin = symbolPaytable[matchCount as 3 | 4 | 5];
       totalWin += symbolPaytableWin;
+
+      if (DEBUG)
+        console.log(
+          `Payline [${line}] -> "${baseSymbol}" x ${matchCount} = ${symbolPaytableWin}`
+        );
     }
   }
 
@@ -59,6 +65,8 @@ export function calculateWin(window: SpinWindow): number {
     const key = scatterCount > 5 ? 5 : scatterCount;
     const payout = scatterPay[SCATTER][key as 3 | 4 | 5];
     totalWin += payout;
+
+    if (DEBUG) console.log(`Scatter -> x ${scatterCount} = ${payout}`);
   }
 
   return totalWin;

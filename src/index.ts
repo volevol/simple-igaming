@@ -25,7 +25,7 @@ function main() {
 
   console.log("Stops per reel:", result.stops);
   printWindow(result.window);
-  console.log(calculateWin(result.window));
+  console.log(`Total win: ${calculateWin(result.window)}`);
 }
 
 main();
