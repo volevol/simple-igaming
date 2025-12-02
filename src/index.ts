@@ -1,10 +1,11 @@
 import { demoReelStrips } from "./demoData";
 import { Board } from "./slot/Board";
 import { SlotMachine } from "./slot/SlotMachine";
-import { calculateWin } from "./slot/win";
+import { calculateWin, PayoutMode } from "./slot/win";
 
-interface GameConfig {
+export interface GameConfig {
   betPerSpin: number;
+  mode: PayoutMode;
 }
 
 const slot = new SlotMachine(demoReelStrips);
@@ -29,7 +30,7 @@ function main(config: GameConfig) {
   const board = new Board(result.window);
   printBoard(board);
 
-  const winBase = calculateWin(board);
+  const winBase = calculateWin(board, config.mode);
   const winScaled = winBase * config.betPerSpin;
 
   console.log("\n=== One spin simulation result ===");
@@ -38,4 +39,4 @@ function main(config: GameConfig) {
   console.log(`Win scaled:   ${winScaled}`);
 }
 
-main({ betPerSpin: 0.5 });
+main({ betPerSpin: 0.5, mode: PayoutMode.Ways });
