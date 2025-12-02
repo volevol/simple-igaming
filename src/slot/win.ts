@@ -1,9 +1,10 @@
+import { Board } from "./Board";
 import { paylines } from "./paylines";
 import { paytable, PaytableSymbols } from "./paytable";
 import { scatterPay } from "./scatter";
-import { SpinWindow, SymbolID } from "./types";
+import { SymbolID } from "./types";
 
-export function calculateWin(window: SpinWindow): number {
+export function calculateWin(board: Board): number {
   let totalWin = 0;
   const WILD = SymbolID.Wild;
   const SCATTER = SymbolID.Scatter;
@@ -13,9 +14,9 @@ export function calculateWin(window: SpinWindow): number {
   for (const line of paylines) {
     const symbols: SymbolID[] = [];
 
-    for (let column = 0; column < window.length; column++) {
+    for (let column = 0; column < board.width; column++) {
       const row = line[column];
-      symbols.push(window[column][row]);
+      symbols.push(board.get(column, row));
     }
 
     let baseSymbol: PaytableSymbols | null = null;
@@ -56,10 +57,7 @@ export function calculateWin(window: SpinWindow): number {
 
   // --- SCATTER WIN ---
 
-  let scatterCount = 0;
-  for (let column = 0; column < window.length; column++)
-    for (let row = 0; row < window[column].length; row++)
-      window[column][row] === SCATTER && scatterCount++;
+  let scatterCount = board.countSymbol(SCATTER);
 
   if (scatterCount >= 3) {
     const key = scatterCount > 5 ? 5 : scatterCount;

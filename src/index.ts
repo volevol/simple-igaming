@@ -1,19 +1,17 @@
 import { demoReelStrips } from "./demoData";
+import { Board } from "./slot/Board";
 import { SlotMachine } from "./slot/SlotMachine";
-import { SpinWindow } from "./slot/types";
 import { calculateWin } from "./slot/win";
 
 const slot = new SlotMachine(demoReelStrips);
 
-function printWindow(window: SpinWindow): void {
-  const rows = 3;
-  const columns = window.length;
-
-  for (let row = 0; row < rows; row++) {
+function printBoard(board: Board): void {
+  for (let row = 0; row < board.height; row++) {
     const rowSymbols: string[] = [];
-    for (let column = 0; column < columns; column++) {
-      rowSymbols.push(window[column][row]);
-    }
+
+    for (let column = 0; column < board.width; column++)
+      rowSymbols.push(board.get(column, row));
+
     console.log(rowSymbols.join(" | "));
   }
 }
@@ -22,10 +20,13 @@ function main() {
   console.log("Simple 5x3 slot spin\n");
 
   const result = slot.spin();
+  // console.log("Stops per reel:", result.stops);
 
-  console.log("Stops per reel:", result.stops);
-  printWindow(result.window);
-  console.log(`Total win: ${calculateWin(result.window)}`);
+  const board = new Board(result.window);
+  printBoard(board);
+
+  const totalWin = calculateWin(board);
+  console.log(`Total win: ${totalWin}`);
 }
 
 main();

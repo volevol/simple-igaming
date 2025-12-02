@@ -1,19 +1,19 @@
 import { demoReelStrips } from "./demoData";
+import { Board } from "./slot/Board";
 import { SlotMachine } from "./slot/SlotMachine";
 import { calculateWin } from "./slot/win";
 
 const slot = new SlotMachine(demoReelStrips);
 
 function runSimulation(spins: number): void {
-  if (spins <= 0) {
-    throw new Error("Please provide valid positive spin count");
-  }
+  if (spins <= 0) throw new Error("Please provide valid positive spin count");
 
   let totalWin = 0;
 
   for (let i = 0; i < spins; i++) {
     const result = slot.spin();
-    const win = calculateWin(result.window);
+    const board = new Board(result.window);
+    const win = calculateWin(board);
 
     totalWin += win;
   }
