@@ -10,6 +10,8 @@ export function calculateWin(board: Board): number {
   const SCATTER = SymbolID.Scatter;
   const DEBUG = true; // toggle for debug
 
+  if (DEBUG) console.log("\n=== Debug win info ===");
+
   // --- LINES WIN ---
   for (const line of paylines) {
     const symbols: SymbolID[] = [];

@@ -3,6 +3,10 @@ import { Board } from "./slot/Board";
 import { SlotMachine } from "./slot/SlotMachine";
 import { calculateWin } from "./slot/win";
 
+interface GameConfig {
+  betPerSpin: number;
+}
+
 const slot = new SlotMachine(demoReelStrips);
 
 function printBoard(board: Board): void {
@@ -16,7 +20,7 @@ function printBoard(board: Board): void {
   }
 }
 
-function main() {
+function main(config: GameConfig) {
   console.log("Simple 5x3 slot spin\n");
 
   const result = slot.spin();
@@ -25,8 +29,13 @@ function main() {
   const board = new Board(result.window);
   printBoard(board);
 
-  const totalWin = calculateWin(board);
-  console.log(`Total win: ${totalWin}`);
+  const winBase = calculateWin(board);
+  const winScaled = winBase * config.betPerSpin;
+
+  console.log("\n=== One spin simulation result ===");
+  console.log(`Win base:     ${winBase}`);
+  console.log(`Bet per spin: ${config.betPerSpin}`);
+  console.log(`Win scaled:   ${winScaled}`);
 }
 
-main();
+main({ betPerSpin: 0.5 });
