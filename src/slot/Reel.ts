@@ -21,9 +21,9 @@ export class Reel {
   }
 
   getWindow(stopIndex: number): SymbolID[] {
-    const top = this.getSymbol(stopIndex - 1);
-    const middle = this.getSymbol(stopIndex);
-    const bottom = this.getSymbol(stopIndex + 1);
+    const top = this.getSymbol(stopIndex);
+    const middle = this.getSymbol(stopIndex + 1);
+    const bottom = this.getSymbol(stopIndex + 2);
 
     return [top, middle, bottom];
   }
