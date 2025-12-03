@@ -16,10 +16,10 @@ export enum SymbolID {
 
 export type ReelStrip = SymbolID[];
 
-// window[reelIndex][rowIndex]
-export type SpinWindow = SymbolID[][];
+export type SpinWindow = SymbolID[][]; // window[reelIndex][rowIndex]
 
 export interface SpinStopResult {
   stops: number[];
   window: SpinWindow;
+  reelSetId: string;
 }

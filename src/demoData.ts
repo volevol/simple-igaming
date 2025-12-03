@@ -1,3 +1,4 @@
+import { ReelSetConfig } from "./slot/config/reelSets";
 import { ReelStrip, SymbolID } from "./slot/types";
 
 export const demoStrip: ReelStrip = [
@@ -132,3 +133,9 @@ export const demoReelStrips: ReelStrip[] = [
   demoStrip,
   demoStrip,
 ];
+
+export const demoReelSet: ReelSetConfig = {
+  id: "demo",
+  weight: 100,
+  strips: demoReelStrips,
+};

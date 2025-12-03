@@ -1,5 +1,9 @@
-import { demoReelStrips } from "./demoData";
 import { Board } from "./slot/Board";
+import {
+  baseReelSet,
+  bonusReelSet,
+  volatileReelSet,
+} from "./slot/config/reelSets";
 import { SlotMachine } from "./slot/SlotMachine";
 import { SYMBOL_LABEL } from "./slot/symbols";
 import { calculateWin, PayoutMode } from "./slot/win";
@@ -9,7 +13,8 @@ export interface GameConfig {
   mode: PayoutMode;
 }
 
-const slot = new SlotMachine(demoReelStrips);
+// const slot = new SlotMachine([demoReelSet]);
+const slot = new SlotMachine([baseReelSet, volatileReelSet, bonusReelSet]);
 
 function printBoard(board: Board): void {
   for (let row = 0; row < board.height; row++) {
@@ -28,6 +33,7 @@ function main(config: GameConfig) {
   console.log("Simple 5x3 slot spin\n");
 
   const result = slot.spin();
+  console.log("Reel set:", result.reelSetId);
   // console.log("Stops per reel:", result.stops);
 
   const board = new Board(result.window);

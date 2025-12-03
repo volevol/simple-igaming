@@ -1,6 +1,10 @@
 import { GameConfig } from ".";
-import { demoReelStrips } from "./demoData";
 import { Board } from "./slot/Board";
+import {
+  baseReelSet,
+  bonusReelSet,
+  volatileReelSet,
+} from "./slot/config/reelSets";
 import { SlotMachine } from "./slot/SlotMachine";
 import { calculateWin, PayoutMode } from "./slot/win";
 
@@ -8,7 +12,7 @@ interface SimulationConfig extends GameConfig {
   spins: number;
 }
 
-const slot = new SlotMachine(demoReelStrips);
+const slot = new SlotMachine([baseReelSet, volatileReelSet, bonusReelSet]);
 
 function runSimulation({ spins, betPerSpin, mode }: SimulationConfig): void {
   if (spins <= 0) throw new Error("Please provide valid positive spin count");
