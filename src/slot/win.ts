@@ -2,6 +2,7 @@ import { Board } from "./Board";
 import { paylines } from "./paylines";
 import { paytable, PaytableSymbols } from "./paytable";
 import { scatterPay } from "./scatter";
+import { SYMBOL_LABEL } from "./symbols";
 import { SymbolID } from "./types";
 
 export enum PayoutMode {
@@ -55,7 +56,7 @@ function calculateLinesWin(board: Board): number {
 
       if (DEBUG)
         console.log(
-          `Payline [${line}] -> "${baseSymbol}" x ${matchCount} = ${symbolPaytableWin}`
+          `Payline [${line}] -> "${SYMBOL_LABEL[baseSymbol]}" x ${matchCount} = ${symbolPaytableWin}`
         );
     }
   }
@@ -66,7 +67,9 @@ function calculateLinesWin(board: Board): number {
 function calculateWaysWin(board: Board): number {
   let totalWin = 0;
 
-  const paytableSymbols = Object.keys(paytable) as PaytableSymbols[];
+  const paytableSymbols: PaytableSymbols[] = Object.keys(paytable).map(
+    (key) => Number(key) as PaytableSymbols
+  );
 
   for (const baseSymbol of paytableSymbols) {
     const reelMatches: number[] = [];
@@ -111,9 +114,9 @@ function calculateWaysWin(board: Board): number {
 
       if (DEBUG)
         console.log(
-          `Ways [${reelMatches}] [${reelHasBase.join(
-            " "
-          )}] -> "${baseSymbol}" x ${symbolPaytableWin} x ${waysCount} = ${symbolWaysWin}`
+          `Ways [${reelMatches}] [${reelHasBase.join(" ")}] -> "${
+            SYMBOL_LABEL[baseSymbol]
+          }" x ${symbolPaytableWin} x ${waysCount} = ${symbolWaysWin}`
         );
     }
   }

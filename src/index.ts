@@ -1,6 +1,7 @@
 import { demoReelStrips } from "./demoData";
 import { Board } from "./slot/Board";
 import { SlotMachine } from "./slot/SlotMachine";
+import { SYMBOL_LABEL } from "./slot/symbols";
 import { calculateWin, PayoutMode } from "./slot/win";
 
 export interface GameConfig {
@@ -14,8 +15,10 @@ function printBoard(board: Board): void {
   for (let row = 0; row < board.height; row++) {
     const rowSymbols: string[] = [];
 
-    for (let column = 0; column < board.width; column++)
-      rowSymbols.push(board.get(column, row));
+    for (let column = 0; column < board.width; column++) {
+      const symbolId = board.get(column, row);
+      rowSymbols.push(SYMBOL_LABEL[symbolId]);
+    }
 
     console.log(rowSymbols.join(" | "));
   }

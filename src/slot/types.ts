@@ -1,15 +1,17 @@
 export enum SymbolID {
-  Wild = "W",
-  Scatter = "S",
-  A = "A",
-  K = "K",
-  Q = "Q",
-  J = "J",
-  Ten = "10",
-  Nine = "9",
-  Eight = "8",
-  Seven = "7",
-  Six = "6",
+  Wild = 0,
+  Scatter = 1,
+
+  A = 2,
+  K = 3,
+  Q = 4,
+  J = 5,
+
+  Six = 6,
+  Seven = 7,
+  Eight = 8,
+  Nine = 9,
+  Ten = 10,
 }
 
 export type ReelStrip = SymbolID[];
