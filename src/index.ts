@@ -1,12 +1,14 @@
+import { printWin } from "./helper";
 import { Board } from "./slot/Board";
 import {
   baseReelSet,
   bonusReelSet,
   volatileReelSet,
 } from "./slot/config/reelSets";
+import { playRound } from "./slot/game/playRound";
 import { SlotMachine } from "./slot/SlotMachine";
 import { SYMBOL_LABEL } from "./slot/symbols";
-import { calculateWin, PayoutMode } from "./slot/win";
+import { PayoutMode } from "./slot/win";
 
 export interface GameConfig {
   betPerSpin: number;
@@ -14,7 +16,8 @@ export interface GameConfig {
 }
 
 // const slot = new SlotMachine([demoReelSet]);
-const slot = new SlotMachine([baseReelSet, volatileReelSet, bonusReelSet]);
+const baseSlot = new SlotMachine([baseReelSet, volatileReelSet]);
+const bonusSlot = new SlotMachine([bonusReelSet]);
 
 function printBoard(board: Board): void {
   for (let row = 0; row < board.height; row++) {
@@ -29,23 +32,29 @@ function printBoard(board: Board): void {
   }
 }
 
-function main(config: GameConfig) {
-  console.log("Simple 5x3 slot spin\n");
+function main({ betPerSpin, mode }: GameConfig) {
+  console.log("Simple 5x3 slot spin", "\n");
+  console.log("Bet per spin:", betPerSpin);
 
-  const result = slot.spin();
-  console.log("Reel set:", result.reelSetId);
-  // console.log("Stops per reel:", result.stops);
+  const result = playRound(baseSlot, bonusSlot, mode);
 
-  const board = new Board(result.window);
-  printBoard(board);
+  console.log("\n--- BASE SPIN ---");
+  printBoard(result.baseBoard);
+  console.log(); // '\n'
+  printWin("Base", result.baseWin, betPerSpin);
 
-  const winBase = calculateWin(board, config.mode);
-  const winScaled = winBase * config.betPerSpin;
+  if (result.bonusTriggered) {
+    console.log("\n*** BONUS TRIGGERED! ***");
 
-  console.log("\n=== One spin simulation result ===");
-  console.log(`Win base:     ${winBase}`);
-  console.log(`Bet per spin: ${config.betPerSpin}`);
-  console.log(`Win scaled:   ${winScaled}`);
+    for (let i = 0; i < result.bonusBoards.length; i++) {
+      console.log(`\n--- BONUS SPIN ${i + 1} ---`);
+
+      printBoard(result.bonusBoards[i]);
+      printWin("Bonus", result.bonusWins[i], betPerSpin);
+    }
+    printWin("Total bonus", result.bonusWin, betPerSpin);
+  }
+  printWin("Total", result.totalWin, betPerSpin);
 }
 
 main({ betPerSpin: 0.5, mode: PayoutMode.Ways });
